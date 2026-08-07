@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frequently asked questions about Make It: installation, API keys, operating systems, updating, troubleshooting, and common errors.">
+  <title>FAQ — Make It</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading Make It</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="Make It logo" width="36" height="36">
+        <span class="gradient-text">Make It</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link">Docs</a></li>
+        <li><a href="screenshots.html" class="nav__link">Screenshots</a></li>
+        <li><a href="faq.html" class="nav__link active">FAQ</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div>
+      <div class="page-hero__orb page-hero__orb--2" aria-hidden="true"></div>
+      <div class="page-hero__grid" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="sep">/</span><span>FAQ</span>
+        </nav>
+        <div class="page-hero__badge reveal">Help</div>
+        <h1 class="reveal">Frequently Asked <span class="gradient-text">Questions</span></h1>
+        <p class="reveal">Answers to the most common questions about Make It.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Installation</span>
+          <h2 class="section__title">Getting Started</h2>
+        </div>
+        <div class="faq">
+          <details class="faq__item glass reveal">
+            <summary>What is Make It?</summary>
+            <p>Make It is a Terminal AI Coding Agent that lets you build, edit, and generate software projects directly from your terminal using natural language. It's powered by KShell and Ollama for fast AI responses.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>How do I install Make It?</summary>
+            <p>Download the appropriate setup script for your platform from the <a href="download.html">Download page</a>, run it, and follow the prompts to enter your Cloudflare Server URL.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Does Make It work on my operating system?</summary>
+            <p>Make It supports Windows, Linux, macOS, WSL, and Termux. Most major Linux distributions are supported including Ubuntu, Debian, Fedora, and Arch Linux.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>What are the system requirements?</summary>
+            <p>Make It is very lightweight. You need a modern operating system (Windows 10+, Linux, macOS 12+), an internet connection, and a KShell Cloudflare server URL. No Python installation is required — the binary is self-contained.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>How do I update Make It?</summary>
+            <p>Simply re-run the setup script for your platform. It will download the latest version and update the binary.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Connection</span>
+          <h2 class="section__title">KShell &amp; Server Configuration</h2>
+        </div>
+        <div class="faq">
+          <details class="faq__item glass reveal">
+            <summary>How do I get a Cloudflare Server URL?</summary>
+            <p>Follow the instructions at <a href="https://colab.research.google.com/github/hacker1514/make/blob/main/make_it.ipynb" target="_blank" rel="noopener noreferrer">make_it.ipynb</a> to launch your server and generate the Cloudflare tunnel URL.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Where is my connection configuration stored?</summary>
+            <p>Make It stores your server URL in <code>~/.makeit/config.json</code> (or <code>%USERPROFILE%\.makeit\config.json</code> on Windows).</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>How do I change my server URL?</summary>
+            <p>Simply re-launch <code>makeit</code> and enter your new Cloudflare URL when prompted.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Is my connection safe?</summary>
+            <p>Yes. The connection uses standard SSH authentication over Cloudflare secure tunnels.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Troubleshooting</span>
+          <h2 class="section__title">Common Issues</h2>
+        </div>
+        <div class="faq">
+          <details class="faq__item glass reveal">
+            <summary>Make It says "Cloudflare Server URL Required"</summary>
+            <p>This means the server URL was not entered. Enter your Cloudflare URL generated from make_it.ipynb when prompted.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Make It is slow to respond</summary>
+            <p>Check your internet connection and ensure your Ollama server process is active on the remote machine.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>How do I completely uninstall Make It?</summary>
+            <p>Delete the binary from the install location (e.g., <code>/usr/local/bin/makeit</code> or <code>%USERPROFILE%\.makeit\makeit.exe</code>) and remove the <code>~/.makeit</code> directory.</p>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Make It doesn't work in Termux</summary>
+            <p>Make sure you have curl installed (<code>pkg install curl</code>) and that you're using Termux from F-Droid.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="cta-banner glass reveal">
+          <h2>Still have <span class="gradient-text">questions</span>?</h2>
+          <p>Reach out to the developer or check the documentation for more details.</p>
+          <a href="contact.html" class="btn btn--primary btn--lg ripple">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/images/logo.svg" alt="" width="36" height="36">
+            <div><strong>Make It</strong><p>By Niranjan Kumar K · KNI-ORG</p></div>
+          </div>
+          <p class="footer__desc">A Terminal AI Coding Agent powered by KShell & Ollama.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Product</h4>
+          <div class="footer__links">
+            <a href="download.html">Download</a>
+            <a href="install.html">Installation</a>
+            <a href="features.html">Features</a>
+            <a href="screenshots.html">Screenshots</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Resources</h4>
+          <div class="footer__links">
+            <a href="docs.html">Documentation</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. Make It is open source (MIT).</p>
+        <div class="footer__socials">
+          <a href="https://github.com/hacker1514" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:hackerenvironment1514@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="docs.html" aria-label="Documentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

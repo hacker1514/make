@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found — Make It Terminal AI Coding Agent">
+  <title>404 — Page Not Found | Make It</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .error-page .btn { margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading Make It</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="Make It logo" width="36" height="36">
+        <span class="gradient-text">Make It</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link">Docs</a></li>
+        <li><a href="screenshots.html" class="nav__link">Screenshots</a></li>
+        <li><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="error-page">
+      <div class="error-page__orb error-page__orb--1" aria-hidden="true"></div>
+      <div class="error-page__orb error-page__orb--2" aria-hidden="true"></div>
+      <div class="container">
+        <div class="error-page__code">404</div>
+        <h1 class="error-page__title">Page Not Found</h1>
+        <p class="error-page__desc">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+          <a href="index.html" class="btn btn--primary btn--lg ripple">Go Home</a>
+          <a href="download.html" class="btn btn--secondary btn--lg ripple">Download</a>
+          <a href="docs.html" class="btn btn--ghost btn--lg ripple">Documentation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;margin-top:0;padding-top:0;">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. Make It is open source (MIT).</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

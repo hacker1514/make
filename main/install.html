@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Install Make It in under a minute. Connect via Cloudflare URL stored permanently in ~/.makeit/config.json.">
+  <meta name="keywords" content="Make It, install, setup, KShell, Cloudflare, config.json">
+  <meta name="author" content="Niranjan Kumar K">
+  <meta name="theme-color" content="#10b981">
+  <meta property="og:title" content="Install Make It — Terminal AI Coding Agent">
+  <meta property="og:description" content="60-second setup. One API key, stored forever in ~/.makeit/api.json.">
+  <meta property="og:type" content="website">
+  <title>Installation — Make It</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading Make It</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="Make It logo" width="36" height="36">
+        <span class="gradient-text">Make It</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link">Docs</a></li>
+        <li><a href="screenshots.html" class="nav__link">Screenshots</a></li>
+        <li><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div>
+      <div class="page-hero__orb page-hero__orb--2" aria-hidden="true"></div>
+      <div class="page-hero__grid" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="sep">/</span><span>Install</span>
+        </nav>
+        <div class="page-hero__badge reveal">Installation</div>
+        <h1 class="reveal">Set Up <span class="gradient-text">Make It</span></h1>
+        <p class="reveal">Download the setup script, run it, and connect via your KShell Cloudflare URL.</p>
+      </div>
+    </section>
+
+    <!-- Setup Wizard (interactive preview) -->
+    <section class="section" id="wizard">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Interactive Preview</span>
+          <h2 class="section__title">Setup Wizard</h2>
+          <p class="section__subtitle">This is what the installer will look like. The real setup runs in your terminal.</p>
+        </div>
+        <div class="wizard glass reveal">
+          <h3 class="wizard__title">KShell Cloudflare URL</h3>
+          <p class="wizard__desc">Enter your Cloudflare Tunnel URL from Google Colab.</p>
+          <form id="wizardForm" novalidate>
+            <div class="wizard__field">
+              <label for="apiKey">Enter Cloudflare URL:</label>
+              <input type="text" id="apiKey" name="apiKey" placeholder="https://xxx.trycloudflare.com" autocomplete="off" spellcheck="false">
+              <p class="wizard__hint">Follow instructions at <a href="https://colab.research.google.com/github/hacker1514/make/blob/main/make_it.ipynb" target="_blank" rel="noopener noreferrer">make_it.ipynb</a></p>
+            </div>
+            <div class="wizard__error" id="wizardError" role="alert"></div>
+            <div class="wizard__actions">
+              <button type="submit" class="btn btn--primary ripple">Connect</button>
+            </div>
+            <div class="wizard__ok" id="wizardOk">✅ Connected! Make It is ready.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Steps -->
+    <section class="section section--alt" id="platform-steps">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Step by Step</span>
+          <h2 class="section__title">Platform Guides</h2>
+          <p class="section__subtitle">Choose your platform, run the commands, and enter your API key once.</p>
+        </div>
+        <div class="install-tabs glass reveal">
+          <div class="install-tabs__nav" role="tablist">
+            <button class="install-tabs__btn active" role="tab" aria-selected="true" data-tab="windows">Windows</button>
+            <button class="install-tabs__btn" role="tab" aria-selected="false" data-tab="linux">Linux</button>
+            <button class="install-tabs__btn" role="tab" aria-selected="false" data-tab="macos">macOS</button>
+            <button class="install-tabs__btn" role="tab" aria-selected="false" data-tab="wsl">WSL</button>
+            <button class="install-tabs__btn" role="tab" aria-selected="false" data-tab="termux">Termux</button>
+          </div>
+          <div class="install-tabs__panels">
+            <div class="install-tabs__panel active" id="tab-windows" role="tabpanel">
+<p class="install-tabs__desc">Download the batch script, run it, and enter your API key. The key is saved to <code>C:\makeit\data\api.json</code>.</p>
+              <div class="code-block">
+                <pre><code>curl -L https://hacker1514.github.io/make/scripts/win_set_up.bat -o win_set_up.bat && win_set_up</code></pre>
+                <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/win_set_up.bat -o win_set_up.bat && win_set_up" aria-label="Copy command">Copy</button>
+              </div>
+              <p class="install-tabs__desc" style="margin-top:1rem;">After installation, restart your terminal and run:</p>
+              <div class="code-block">
+                <pre><code>makeit</code></pre>
+                <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+              </div>
+            </div>
+            <div class="install-tabs__panel" id="tab-linux" role="tabpanel">
+<p class="install-tabs__desc">Download the shell script, make it executable, and run it. The key is saved to <code>~/.makeit/api.json</code>.</p>
+              <div class="code-block">
+                <pre><code>curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh</code></pre>
+                <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh" aria-label="Copy command">Copy</button>
+              </div>
+              <p class="install-tabs__desc" style="margin-top:1rem;">After installation, restart your terminal and run:</p>
+              <div class="code-block">
+                <pre><code>makeit</code></pre>
+                <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+              </div>
+            </div>
+            <div class="install-tabs__panel" id="tab-macos" role="tabpanel">
+<p class="install-tabs__desc">Download the macOS script, make it executable, and run it. The key is saved to <code>~/.makeit/api.json</code>.</p>
+              <div class="code-block">
+                <pre><code>curl -L https://hacker1514.github.io/make/scripts/mac_set_up.sh -o mac_set_up.sh && chmod +x mac_set_up.sh && ./mac_set_up.sh</code></pre>
+                <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/mac_set_up.sh -o mac_set_up.sh && chmod +x mac_set_up.sh && ./mac_set_up.sh" aria-label="Copy command">Copy</button>
+              </div>
+              <p class="install-tabs__desc" style="margin-top:1rem;">After installation, restart your terminal and run:</p>
+              <div class="code-block">
+                <pre><code>makeit</code></pre>
+                <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+              </div>
+            </div>
+            <div class="install-tabs__panel" id="tab-wsl" role="tabpanel">
+<p class="install-tabs__desc">WSL uses the Linux setup. The key is saved to <code>~/.makeit/api.json</code> inside your WSL environment.</p>
+              <div class="code-block">
+                <pre><code>curl -L https://hacker1514.github.io/make/scripts/wsl_set_up.sh -o wsl_set_up.sh && chmod +x wsl_set_up.sh && ./wsl_set_up.sh</code></pre>
+                <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/wsl_set_up.sh -o wsl_set_up.sh && chmod +x wsl_set_up.sh && ./wsl_set_up.sh" aria-label="Copy command">Copy</button>
+              </div>
+              <p class="install-tabs__desc" style="margin-top:1rem;">After installation, restart your terminal and run:</p>
+              <div class="code-block">
+                <pre><code>makeit</code></pre>
+                <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+              </div>
+            </div>
+            <div class="install-tabs__panel" id="tab-termux" role="tabpanel">
+<p class="install-tabs__desc">Download the Termux script, make it executable, and run it. The key is saved to <code>~/.makeit/api.json</code>.</p>
+              <div class="code-block">
+                <pre><code>curl -L https://hacker1514.github.io/make/scripts/termux_set_up.sh -o termux_set_up.sh && chmod +x termux_set_up.sh && ./termux_set_up.sh</code></pre>
+                <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/termux_set_up.sh -o termux_set_up.sh && chmod +x termux_set_up.sh && ./termux_set_up.sh" aria-label="Copy command">Copy</button>
+              </div>
+              <p class="install-tabs__desc" style="margin-top:1rem;">After installation, run:</p>
+              <div class="code-block">
+                <pre><code>makeit</code></pre>
+                <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How the key is stored -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Storage</span>
+          <h2 class="section__title">Where Is My Key Stored?</h2>
+          <p class="section__subtitle">Inside the Make It install directory, in a simple JSON file. Never inside your project folder.</p>
+        </div>
+        <div class="info-cards">
+          <div class="info-card glass reveal">
+            <h4>📁 Location</h4>
+<p>On Linux/macOS/WSL: <code>~/.makeit/api.json</code>. On Windows: <code>C:\makeit\data\api.json</code>.</p>
+          </div>
+          <div class="info-card glass reveal">
+            <h4>📄 Format</h4>
+            <div class="code-block" style="margin:0;">
+              <pre><code>{
+  "server_url": "https://xxx.trycloudflare.com"
+}</code></pre>
+            </div>
+          </div>
+          <div class="info-card glass reveal">
+            <h4>🔒 Security</h4>
+            <p>Make It reads the key from this file automatically. It's never exposed in terminal history or logs.</p>
+          </div>
+          <div class="info-card glass reveal">
+            <h4>🔄 Reset</h4>
+            <p>To change your key, simply delete the <code>api.json</code> file and re-run the setup script.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="cta-banner glass reveal">
+          <h2>Ready to <span class="gradient-text">code</span>?</h2>
+          <p>Launch Make It in your terminal and describe what you want to build.</p>
+          <a href="download.html" class="btn btn--primary btn--lg ripple">Download Make It</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/images/logo.svg" alt="" width="36" height="36">
+            <div>
+              <strong>Make It</strong>
+              <p>By Niranjan Kumar K · KNI-ORG</p>
+            </div>
+          </div>
+          <p class="footer__desc">A Terminal AI Coding Agent powered by KShell & Ollama. Build, edit, and generate projects from your terminal.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Product</h4>
+          <div class="footer__links">
+            <a href="download.html">Download</a>
+            <a href="install.html">Installation</a>
+            <a href="features.html">Features</a>
+            <a href="screenshots.html">Screenshots</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Resources</h4>
+          <div class="footer__links">
+            <a href="docs.html">Documentation</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. Make It is open source (MIT).</p>
+        <div class="footer__socials">
+          <a href="https://github.com/hacker1514" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:hackerenvironment1514@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="docs.html" aria-label="Documentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

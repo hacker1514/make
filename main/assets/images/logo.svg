@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="miGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="miSpark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a7f3d0"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#miGrad)"/>
+  <rect width="64" height="64" rx="16" fill="url(#miGrad)" opacity="0.0"/>
+  <path d="M16 20h20a8 8 0 0 1 0 16H24v8" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95"/>
+  <path d="M22 26l8 4-8 4" stroke="url(#miSpark)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="47" cy="20" r="2.6" fill="#a7f3d0"/>
+  <circle cx="52" cy="27" r="1.8" fill="#c4b5fd"/>
+  <circle cx="44" cy="14" r="1.4" fill="#67e8f9"/>
+</svg>
+

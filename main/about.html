@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Make It — Terminal AI Coding Agent. Created by Niranjan Kumar K. Learn about the developer, mission, vision, and roadmap.">
+  <title>About — Make It</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading Make It</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="Make It logo" width="36" height="36">
+        <span class="gradient-text">Make It</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link">Docs</a></li>
+        <li><a href="screenshots.html" class="nav__link">Screenshots</a></li>
+        <li><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li><a href="about.html" class="nav__link active">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div>
+      <div class="page-hero__orb page-hero__orb--2" aria-hidden="true"></div>
+      <div class="page-hero__grid" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="sep">/</span><span>About</span>
+        </nav>
+        <div class="page-hero__badge reveal">About</div>
+        <h1 class="reveal">About <span class="gradient-text">Make It</span></h1>
+        <p class="reveal">The story behind the Terminal AI Coding Agent, its mission, and the developer who built it.</p>
+      </div>
+    </section>
+
+    <!-- Developer -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Creator</span>
+          <h2 class="section__title">Niranjan Kumar K</h2>
+        </div>
+        <div class="developer">
+          <div class="developer__profile glass reveal">
+            <div class="developer__avatar">
+              <img src="https://hacker1514.github.io/t/me.png" alt="Niranjan Kumar K">
+            </div>
+            <h3>Niranjan Kumar K</h3>
+            <p class="developer__title">Software Developer &amp; AI Enthusiast</p>
+            <p class="developer__bio">
+              Passionate software developer with deep expertise in operating systems, programming languages,
+              developer tools, automation, cloud technologies, artificial intelligence, and open-source software.
+              Creator of Make It, K-Drive, and multiple developer-focused projects with an emphasis on
+              performance, simplicity, and cross-platform compatibility.
+            </p>
+            <div class="developer__links">
+              <a href="https://github.com/hacker1514" class="btn btn--secondary btn--sm ripple" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="mailto:hackerenvironment1514@gmail.com" class="btn btn--ghost btn--sm ripple">Email</a>
+            </div>
+          </div>
+          <div class="developer__story reveal">
+            <h3>The Story</h3>
+            <p>
+              Make It was born from a simple observation: developers spend too much time on repetitive tasks
+              that an AI could handle. After building K-Drive (a virtual drive for GitHub repositories), I wanted
+              to create something that would let developers describe what they want and have the AI build it.
+            </p>
+            <p>
+              The result is Make It — a terminal-based AI coding agent that combines the power of large language
+              models with practical file system operations, command execution, and project scaffolding. It's
+              designed to be the pair programmer you always wanted: fast, reliable, and always available.
+            </p>
+            <p>
+              Built with Python and powered by KShell & Ollama, Make It delivers responses efficiently.
+              per second — making it one of the fastest AI coding agents available.
+            </p>
+            <h3>Why "Make It"?</h3>
+            <p>
+              The name reflects the core philosophy: tell the agent what you want to build, and it makes it.
+              No complex configuration, no steep learning curve — just describe, and it's done.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission, Vision, Roadmap -->
+    <section class="section section--alt" id="mission">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Mission &amp; Vision</span>
+          <h2 class="section__title">Building the Future of Development</h2>
+        </div>
+        <div class="mission-grid">
+          <div class="mission-card glass reveal">
+            <div class="mission-card__icon">🎯</div>
+            <h3>Mission</h3>
+            <p>Democratize AI-powered software development by creating tools that are fast, free, and accessible to every developer regardless of platform or budget.</p>
+          </div>
+          <div class="mission-card glass reveal">
+            <div class="mission-card__icon">🔭</div>
+            <h3>Vision</h3>
+            <p>A world where developers describe what they want to build and the AI handles the implementation — transforming the terminal into the most powerful development environment.</p>
+          </div>
+          <div class="mission-card glass reveal">
+            <div class="mission-card__icon">💡</div>
+            <h3>Values</h3>
+            <p>Open source, privacy-first, cross-platform, and performance-obsessed. Your API key stays on your machine. Your code belongs to you. Speed is a feature.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Future</span>
+          <h2 class="section__title">Roadmap</h2>
+          <p class="section__subtitle">What's coming next for Make It.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content glass">
+              <h3>Make It v1.0</h3>
+              <p>Initial release with AI coding, file editing, project generation, and 9-platform support.</p>
+              <span class="timeline__status timeline__status--done">Done</span>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content glass">
+              <h3>Plugin System</h3>
+              <p>Extend Make It with community plugins for custom tools, language support, and integrations.</p>
+              <span class="timeline__status timeline__status--next">In Progress</span>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content glass">
+              <h3>Multi-Model Support</h3>
+              <p>Support for remote & local models via KShell and Ollama.</p>
+              <span class="timeline__status timeline__status--soon">Planned</span>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content glass">
+              <h3>Collaborative Mode</h3>
+              <p>Share Make It sessions with team members for pair programming with AI assistance.</p>
+              <span class="timeline__status timeline__status--soon">Planned</span>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content glass">
+              <h3>GUI Companion</h3>
+              <p>A lightweight graphical companion app for visualizing project structure and AI suggestions.</p>
+              <span class="timeline__status timeline__status--soon">Planned</span>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content glass">
+              <h3>Automatic Project Recovery</h3>
+              <p>Never lose work — automatic session recovery with git-backed project snapshots.</p>
+              <span class="timeline__status timeline__status--soon">Planned</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="cta-banner glass reveal">
+          <h2>Join the <span class="gradient-text">journey</span>.</h2>
+          <p>Make It is open source and community-driven. Contribute, suggest features, or report issues on GitHub.</p>
+          <a href="https://github.com/hacker1514" class="btn btn--primary btn--lg ripple" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/images/logo.svg" alt="" width="36" height="36">
+            <div><strong>Make It</strong><p>By Niranjan Kumar K · KNI-ORG</p></div>
+          </div>
+          <p class="footer__desc">A Terminal AI Coding Agent powered by KShell & Ollama.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Product</h4>
+          <div class="footer__links">
+            <a href="download.html">Download</a>
+            <a href="install.html">Installation</a>
+            <a href="features.html">Features</a>
+            <a href="screenshots.html">Screenshots</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Resources</h4>
+          <div class="footer__links">
+            <a href="docs.html">Documentation</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. Make It is open source (MIT).</p>
+        <div class="footer__socials">
+          <a href="https://github.com/hacker1514" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:hackerenvironment1514@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="docs.html" aria-label="Documentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

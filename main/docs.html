@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Make It documentation: architecture, folder structure, configuration, commands, examples, prompt examples, tool system, memory system, and LLM system.">
+  <title>Documentation — Make It</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading Make It</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="Make It logo" width="36" height="36">
+        <span class="gradient-text">Make It</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link active">Docs</a></li>
+        <li><a href="screenshots.html" class="nav__link">Screenshots</a></li>
+        <li><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div>
+      <div class="page-hero__orb page-hero__orb--2" aria-hidden="true"></div>
+      <div class="page-hero__grid" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="sep">/</span><span>Documentation</span>
+        </nav>
+        <div class="page-hero__badge reveal">Docs</div>
+        <h1 class="reveal"><span class="gradient-text">Documentation</span></h1>
+        <p class="reveal">Everything you need to know about Make It — architecture, commands, and usage.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="docs-layout">
+          <aside class="docs-sidebar glass reveal">
+            <h4>On this page</h4>
+<nav>
+              <a href="#architecture">Architecture</a>
+              <a href="#folder-structure">Folder Structure</a>
+              <a href="#configuration">Configuration</a>
+              <a href="#examples">Examples</a>
+              <a href="#prompts">Prompt Examples</a>
+              <a href="#tool-system">Tool System</a>
+              <a href="#memory-system">Memory System</a>
+              <a href="#llm-system">LLM System</a>
+            </nav>
+          </aside>
+
+          <div class="docs-content">
+
+            <!-- Architecture -->
+            <section class="docs-section" id="architecture">
+              <h2>Architecture</h2>
+              <p>Make It is built on a modular architecture that separates concerns into distinct layers:</p>
+              <div class="info-cards">
+                <div class="info-card glass">
+                  <h4>🎛️ CLI Layer</h4>
+                  <p>Handles user input, command parsing, and terminal output. Built with <code>argparse</code> and <code>rich</code> for beautiful terminal rendering.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🧠 AI Layer</h4>
+                  <p>Orchestrates communication with the KShell & Ollama backend. Manages execution, context windows, and tools.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🔧 Tool System</h4>
+                  <p>Provides the AI with tools to interact with the file system, execute commands, and manage projects.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>💾 Memory System</h4>
+                  <p>Persists project context, conversation history, and user preferences across sessions.</p>
+                </div>
+              </div>
+              <p>The AI communicates via KShell Client with the remote Ollama server. Responses are executed and returned in real-time to the terminal. The tool system is a set of Python functions that the AI can call to perform actions like reading files, writing files, and executing commands.</p>
+            </section>
+
+            <!-- Folder Structure -->
+            <section class="docs-section" id="folder-structure">
+              <h2>Folder Structure</h2>
+              <p>Make It is organized into a clean, modular structure:</p>
+              <div class="folder-tree glass">
+                <span class="dir">makeit/</span><br>
+                ├── <span class="dir">makeit/</span> &nbsp;<span class="comment"># core package</span><br>
+                │   ├── <span class="file">__init__.py</span><br>
+                │   ├── <span class="file">cli.py</span> &nbsp;<span class="comment"># CLI entry point</span><br>
+                │   ├── <span class="file">config.py</span> &nbsp;<span class="comment"># Configuration management</span><br>
+                │   ├── <span class="file">agent.py</span> &nbsp;<span class="comment"># AI agent orchestrator</span><br>
+                │   ├── <span class="file">tools/</span> &nbsp;<span class="comment"># Tool implementations</span><br>
+                │   │   ├── <span class="file">__init__.py</span><br>
+                │   │   ├── <span class="file">file_tools.py</span><br>
+                │   │   ├── <span class="file">command_tools.py</span><br>
+                │   │   └── <span class="file">project_tools.py</span><br>
+                │   ├── <span class="file">memory/</span> &nbsp;<span class="comment"># Memory system</span><br>
+                │   │   ├── <span class="file">__init__.py</span><br>
+                │   │   ├── <span class="file">store.py</span><br>
+                │   │   └── <span class="file">context.py</span><br>
+                │   ├── <span class="file">llm/</span> &nbsp;<span class="comment"># LLM integration</span><br>
+                │   │   ├── <span class="file">__init__.py</span><br>
+                │   │   ├── <span class="file">llm.py</span><br>
+                │   │   └── <span class="file">prompts.py</span><br>
+                │   └── <span class="file">utils/</span> &nbsp;<span class="comment"># Utilities</span><br>
+                │       ├── <span class="file">__init__.py</span><br>
+                │       └── <span class="file">helpers.py</span><br>
+                ├── <span class="file">setup.py</span> &nbsp;<span class="comment"># Package setup</span><br>
+                ├── <span class="file">requirements.txt</span><br>
+                └── <span class="file">README.md</span>
+              </div>
+            </section>
+
+            <!-- Configuration -->
+            <section class="docs-section" id="configuration">
+              <h2>Configuration</h2>
+              <p>Make It uses KShell Cloudflare server URL for configuration.</p>
+              <table class="data-table glass">
+                <thead>
+                  <tr>
+                    <th>Variable</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>SERVER_URL</code></td>
+                    <td>Yes</td>
+                    <td>Cloudflare Tunnel URL generated from make_it.ipynb.</td>
+                  </tr>
+                  <tr>
+                    <td><code>MAKEIT_MODEL</code></td>
+                    <td>No</td>
+                    <td>Ollama model to use (default: <code>qwen2.5:3b</code>)</td>
+                  </tr>
+                  <tr>
+                    <td><code>MAKEIT_TEMP</code></td>
+                    <td>No</td>
+                    <td>Temperature for AI responses (default: <code>0.7</code>)</td>
+                  </tr>
+                  <tr>
+                    <td><code>MAKEIT_MAX_TOKENS</code></td>
+                    <td>No</td>
+                    <td>Maximum tokens per response (default: <code>4096</code>)</td>
+                  </tr>
+                  <tr>
+                    <td><code>MAKEIT_HOME</code></td>
+                    <td>No</td>
+                    <td>Custom config directory path (default: <code>~/.makeit</code>)</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Configuration is loaded from the <code>AI_API_KEY</code> environment variable at startup. Make It reads it automatically and never asks you to re-enter it.</p>
+            </section>
+
+<!-- Examples -->
+            <section class="docs-section" id="examples">
+              <h2>Examples</h2>
+              <h3>Start an interactive session</h3>
+              <div class="code-block">
+                <pre><code>makeit</code></pre>
+                <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+              </div>
+              <p>Enters interactive mode. The AI greets you and waits for instructions.</p>
+
+              <h3>Generate a project</h3>
+              <div class="code-block">
+                <pre><code>makeit "create a flask API with SQLite and user authentication"</code></pre>
+                <button class="code-block__copy ripple" data-copy='makeit "create a flask API with SQLite and user authentication"' aria-label="Copy command">Copy</button>
+              </div>
+              <p>Make It generates a complete project structure with all files, dependencies, and a README.</p>
+
+              <h3>Edit a file</h3>
+              <div class="code-block">
+                <pre><code>makeit "add input validation to the signup endpoint"</code></pre>
+                <button class="code-block__copy ripple" data-copy='makeit "add input validation to the signup endpoint"' aria-label="Copy command">Copy</button>
+              </div>
+              <p>Make It reads the relevant files, understands the context, and makes precise edits.</p>
+
+              <h3>Debug code</h3>
+              <div class="code-block">
+                <pre><code>makeit "find why the database connection is failing"</code></pre>
+                <button class="code-block__copy ripple" data-copy='makeit "find why the database connection is failing"' aria-label="Copy command">Copy</button>
+              </div>
+              <p>Make It examines configuration files, logs, and code to identify the issue.</p>
+            </section>
+
+            <!-- Prompt Examples -->
+            <section class="docs-section" id="prompts">
+              <h2>Prompt Examples</h2>
+              <p>Make It understands natural language. Here are some effective prompts:</p>
+              <table class="data-table glass">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Prompt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Project</td>
+                    <td><code>"Create a CLI tool that renames files in bulk"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Refactor</td>
+                    <td><code>"Refactor the main.py into modules"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td><code>"Write unit tests for the utils module"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Docker</td>
+                    <td><code>"Create a Dockerfile for this project"</code></td>
+                  </tr>
+                  <tr>
+                    <td>CI/CD</td>
+                    <td><code>"Add a GitHub Actions workflow for testing"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Docs</td>
+                    <td><code>"Generate a README for this project"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Fix</td>
+                    <td><code>"Fix the syntax errors in index.js"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Explain</td>
+                    <td><code>"Explain what this lambda function does"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Optimize</td>
+                    <td><code>"Optimize this SQL query for large datasets"</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Tool System -->
+            <section class="docs-section" id="tool-system">
+              <h2>Tool System</h2>
+              <p>Make It provides the AI agent with a set of tools to interact with your system:</p>
+              <div class="info-cards">
+                <div class="info-card glass">
+                  <h4>📄 <code>read_file</code></h4>
+                  <p>Read the contents of a file. Used for understanding existing code before editing.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>✏️ <code>write_file</code></h4>
+                  <p>Create or overwrite a file with new content. Used for generating code.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🔍 <code>search_files</code></h4>
+                  <p>Search for patterns across files using regex. Used for finding specific code.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>📋 <code>list_files</code></h4>
+                  <p>List files in a directory. Used for understanding project structure.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>⚡ <code>run_command</code></h4>
+                  <p>Execute a terminal command. Used for builds, tests, and installations.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🗑️ <code>delete_file</code></h4>
+                  <p>Delete a file or empty directory. Used for cleanup.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>📦 <code>create_project</code></h4>
+                  <p>Scaffold an entire project structure from a template.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🧪 <code>run_tests</code></h4>
+                  <p>Execute test suites and report results.</p>
+                </div>
+              </div>
+              <p>Each tool is implemented as a Python function with a clear schema that the AI understands. Tools can be extended or restricted based on user preferences.</p>
+            </section>
+
+            <!-- Memory System -->
+            <section class="docs-section" id="memory-system">
+              <h2>Memory System</h2>
+              <p>Make It remembers your project context across sessions using a persistent memory system:</p>
+              <div class="info-cards">
+                <div class="info-card glass">
+                  <h4>💬 Conversation History</h4>
+                  <p>Stores recent exchanges between you and the AI, allowing coherent multi-turn conversations.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>📁 Project Context</h4>
+                  <p>Remembers the project structure, recent files you've worked on, and important variables.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>⚙️ User Preferences</h4>
+                  <p>Stores your preferred language, framework, and coding style for consistent outputs.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>💾 Persistent Storage</h4>
+                  <p>Memory is stored in <code>~/.makeit/memory/</code> as JSON files, surviving terminal restarts.</p>
+                </div>
+              </div>
+              <p>The memory system is automatically managed. You can reset it with <code>makeit --reset</code> if needed.</p>
+            </section>
+
+            <!-- LLM System -->
+            <section class="docs-section" id="llm-system">
+              <h2>LLM System</h2>
+              <p>Make It integrates with KShell and Ollama to deliver AI responses:</p>
+              <div class="info-cards">
+                <div class="info-card glass">
+                  <h4>⚡ KShell & Ollama</h4>
+                  <p>Uses Ollama engine for local and remote server responses. Tunneled via KShell Cloudflare connection.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🧠 Model Selection</h4>
+                  <p>Default model is Qwen2.5 3B (qwen2.5:3b). Customizable via <code>MAKEIT_MODEL</code> environment variable.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>📝 System Prompt</h4>
+                  <p>A carefully crafted system prompt instructs the AI on how to use tools, understand projects, and generate code.</p>
+                </div>
+                <div class="info-card glass">
+                  <h4>🔄 Remote Tunnel</h4>
+                  <p>Responses are executed and returned securely through KShell client connection.</p>
+                </div>
+              </div>
+              <p>The LLM system is designed to be modular. Future updates will add support for additional providers and local models.</p>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="cta-banner glass reveal">
+          <h2>Ready to <span class="gradient-text">build</span>?</h2>
+          <p>Download Make It for your platform and start coding with AI in seconds.</p>
+          <a href="download.html" class="btn btn--primary btn--lg ripple">Download Now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/images/logo.svg" alt="" width="36" height="36">
+            <div><strong>Make It</strong><p>By Niranjan Kumar K · KNI-ORG</p></div>
+          </div>
+          <p class="footer__desc">A Terminal AI Coding Agent powered by KShell & Ollama.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Product</h4>
+          <div class="footer__links">
+            <a href="download.html">Download</a>
+            <a href="install.html">Installation</a>
+            <a href="features.html">Features</a>
+            <a href="screenshots.html">Screenshots</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Resources</h4>
+          <div class="footer__links">
+            <a href="docs.html">Documentation</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. Make It is open source (MIT).</p>
+        <div class="footer__socials">
+          <a href="https://github.com/hacker1514" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:hackerenvironment1514@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="docs.html" aria-label="Documentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

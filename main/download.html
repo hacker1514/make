@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download Make It for Windows, Linux, Ubuntu, Debian, Fedora, Arch Linux, macOS, WSL, and Termux. Terminal AI Coding Agent powered by KShell & Ollama.">
+  <meta name="keywords" content="Make It, download, Windows, Linux, macOS, WSL, Termux, Ubuntu, Debian, Fedora, Arch">
+  <meta name="author" content="Niranjan Kumar K">
+  <meta name="theme-color" content="#10b981">
+  <meta property="og:title" content="Download Make It — Terminal AI Coding Agent">
+  <meta property="og:description" content="Download Make It for your platform. Free, open source, powered by KShell & Ollama.">
+  <meta property="og:type" content="website">
+  <title>Download — Make It</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading Make It</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="Make It logo" width="36" height="36">
+        <span class="gradient-text">Make It</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link">Docs</a></li>
+        <li><a href="screenshots.html" class="nav__link">Screenshots</a></li>
+        <li><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div>
+      <div class="page-hero__orb page-hero__orb--2" aria-hidden="true"></div>
+      <div class="page-hero__grid" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span class="sep">/</span><span>Download</span>
+        </nav>
+        <div class="page-hero__badge reveal">Download</div>
+        <h1 class="reveal">Get <span class="gradient-text">Make It</span></h1>
+        <p class="reveal">Choose your platform, download the setup script, and run it. The installer will prompt for your Cloudflare URL to connect.</p>
+      </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Quick Start</span>
+          <h2 class="section__title">One Command to Install</h2>
+          <p class="section__subtitle">Just copy, paste, and run in your terminal. The installer handles everything.</p>
+        </div>
+        <div class="wizard glass reveal" style="text-align:center;max-width:700px;margin:0 auto;">
+          <p style="margin-bottom:0.5rem;font-weight:600;">After installation, simply run:</p>
+          <div class="code-block" style="max-width:300px;margin:0 auto;">
+            <pre><code>makeit</code></pre>
+            <button class="code-block__copy ripple" data-copy="makeit" aria-label="Copy command">Copy</button>
+          </div>
+<p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.875rem;">That's it. Make It reads your API key from <code>~/.makeit/api.json</code> (or <code>C:\makeit\data\api.json</code> on Windows) automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Cards -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">Platforms</span>
+          <h2 class="section__title">Choose Your Platform</h2>
+          <p class="section__subtitle">Each card shows the curl command to download and run the setup.</p>
+        </div>
+        <div class="download__grid">
+
+          <!-- Windows -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5L10.5 4v15.11L3 18.5V5.5zm9 13.61L21 18.5V5.5L12 4v14.61z"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Windows</h3>
+            <p>Windows 10/11. Run in CMD or PowerShell.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_win.exe</div>
+<div class="code-block" style="margin-bottom:1rem;">
+<pre><code>curl -L https://hacker1514.github.io/make/scripts/win_set_up.bat -o win_set_up.bat && win_set_up</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/win_set_up.bat -o win_set_up.bat && win_set_up" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/win_set_up.bat" class="btn btn--primary btn--sm ripple">Download .bat</a>
+              <a href="install.html#windows" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+          <!-- Linux -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/><circle cx="12.5" cy="12" r="3"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Linux</h3>
+            <p>All major distributions. Requires curl and sudo.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_linux</div>
+<div class="code-block" style="margin-bottom:1rem;">
+<pre><code>curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/linux_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#linux" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- Ubuntu -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="4" r="2"/><path d="M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4z"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M4 16a8 8 0 0 1 16 0"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Ubuntu</h3>
+            <p>Ubuntu 20.04+ and derivatives (Pop!_OS, Mint).</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_linux</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+              <pre><code>curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/linux_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#linux" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- Debian -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Debian</h3>
+            <p>Debian 11+ (Bullseye) and older supported releases.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_linux</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+              <pre><code>curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/linux_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#linux" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- Fedora -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6a6 6 0 0 1 0 12V6z"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Fedora</h3>
+            <p>Fedora 38+ and RHEL-based distributions.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_linux</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+              <pre><code>curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/linux_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#linux" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- Arch Linux -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 6l4 10H8l4-10z"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Arch Linux</h3>
+            <p>Arch, Manjaro, EndeavourOS, and other Arch-based distros.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_linux</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+              <pre><code>curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/linux_set_up.sh -o linux_set_up.sh && chmod +x linux_set_up.sh && ./linux_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/linux_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#linux" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- macOS -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>macOS</h3>
+            <p>Intel and Apple Silicon (M1/M2/M3). macOS 12+.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_mac</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+<pre><code>curl -L https://hacker1514.github.io/make/scripts/mac_set_up.sh -o mac_set_up.sh && chmod +x mac_set_up.sh && ./mac_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/mac_set_up.sh -o mac_set_up.sh && chmod +x mac_set_up.sh && ./mac_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/mac_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#macos" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- WSL -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h7v7H3V4zm0 9h7v7H3v-7zm9-9h9v4h-9V4zm0 5h9v4h-9V9zm0 5h9v4h-9v-4z"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>WSL</h3>
+            <p>Windows Subsystem for Linux (WSL 2). Uses Linux binary.</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_linux</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+<pre><code>curl -L https://hacker1514.github.io/make/scripts/wsl_set_up.sh -o wsl_set_up.sh && chmod +x wsl_set_up.sh && ./wsl_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/wsl_set_up.sh -o wsl_set_up.sh && chmod +x wsl_set_up.sh && ./wsl_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/wsl_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#wsl" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+<!-- Termux -->
+          <article class="download-card glass reveal">
+            <div class="download-card__top">
+              <div class="download-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 20c-.83 0-1.5-.67-1.5-1.5S11.17 18 12 18s1.5.67 1.5 1.5S12.83 21 12 21zm5-4H7V4h10v13z"/></svg>
+              </div>
+              <span class="download-card__version">v1.0.0</span>
+            </div>
+            <h3>Termux</h3>
+            <p>Run on Android via Termux (F-Droid version).</p>
+            <div class="download-card__reqs"><strong>Binary</strong> make_it_termux</div>
+            <div class="code-block" style="margin-bottom:1rem;">
+<pre><code>curl -L https://hacker1514.github.io/make/scripts/termux_set_up.sh -o termux_set_up.sh && chmod +x termux_set_up.sh && ./termux_set_up.sh</code></pre>
+              <button class="code-block__copy ripple" data-copy="curl -L https://hacker1514.github.io/make/scripts/termux_set_up.sh -o termux_set_up.sh && chmod +x termux_set_up.sh && ./termux_set_up.sh" aria-label="Copy command">Copy</button>
+            </div>
+            <div class="download-card__actions">
+              <a href="/make_it/scripts/termux_set_up.sh" class="btn btn--primary btn--sm ripple">Download .sh</a>
+              <a href="install.html#termux" class="btn btn--secondary btn--sm ripple">Guide</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- System Requirements -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__label">System Requirements</span>
+          <h2 class="section__title">What You Need</h2>
+          <p class="section__subtitle">Make It is lightweight and runs on almost any modern machine.</p>
+        </div>
+        <div class="info-cards">
+          <div class="info-card glass reveal">
+            <h4>💻 Operating System</h4>
+            <p>Windows 10/11, Linux, macOS 12+, WSL 2, or Termux.</p>
+          </div>
+          <div class="info-card glass reveal">
+            <h4>⚡ KShell Tunnel</h4>
+            <p>Cloudflare URL generated from <a href="https://colab.research.google.com/github/hacker1514/make/blob/main/make_it.ipynb" target="_blank" rel="noopener noreferrer">make_it.ipynb</a>.</p>
+          </div>
+          <div class="info-card glass reveal">
+            <h4>📡 Internet</h4>
+            <p>Required for connection to remote Ollama backend via KShell.</p>
+          </div>
+          <div class="info-card glass reveal">
+            <h4>📦 curl</h4>
+            <p>Required to download the installer. Pre-installed on most systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="cta-banner glass reveal">
+          <h2>Installed? Just run <span class="gradient-text">makeit</span>.</h2>
+          <p>That's the only command you need. Make It connects via your KShell Cloudflare URL automatically.</p>
+          <a href="install.html" class="btn btn--primary btn--lg ripple">Setup Guide</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/images/logo.svg" alt="" width="36" height="36">
+            <div><strong>Make It</strong><p>By Niranjan Kumar K · KNI-ORG</p></div>
+          </div>
+          <p class="footer__desc">A Terminal AI Coding Agent powered by KShell & Ollama.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Product</h4>
+          <div class="footer__links">
+            <a href="download.html">Download</a>
+            <a href="install.html">Installation</a>
+            <a href="features.html">Features</a>
+            <a href="screenshots.html">Screenshots</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Resources</h4>
+          <div class="footer__links">
+            <a href="docs.html">Documentation</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. Make It is open source (MIT).</p>
+        <div class="footer__socials">
+          <a href="https://github.com/hacker1514" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:hackerenvironment1514@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="docs.html" aria-label="Documentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
