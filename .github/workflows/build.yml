@@ -1,0 +1,133 @@
+name: Make It
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller -r source/requirements.txt
+
+      - name: Build Windows Binary
+        run: |
+          pyinstaller --noconfirm --onefile --console --name "make_it_win" source/make_it.py
+
+      - name: Organize output
+        run: |
+          mkdir -p download
+          cp dist/make_it_win.exe download/make_it_win.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: make_it_win.exe
+          path: download/make_it_win.exe
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller -r source/requirements.txt
+
+      - name: Build Linux Binary
+        run: |
+          pyinstaller --noconfirm --onefile --console --name "make_it_linux" source/make_it.py
+
+      - name: Organize output
+        run: |
+          mkdir -p download
+          cp dist/make_it_linux download/make_it_linux
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: make_it_linux
+          path: download/make_it_linux
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller -r source/requirements.txt
+
+      - name: Build macOS Binary
+        run: |
+          pyinstaller --noconfirm --onefile --console --name "make_it_mac" source/make_it.py
+
+      - name: Organize output
+        run: |
+          mkdir -p download
+          cp dist/make_it_mac download/make_it_mac
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: make_it_mac
+          path: download/make_it_mac
+
+  build-termux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller -r source/requirements.txt
+
+      - name: Build Termux (Linux ARM64/x86_64 compatible) Binary
+        run: |
+          pyinstaller --noconfirm --onefile --console --name "make_it_termux" source/make_it.py
+
+      - name: Organize output
+        run: |
+          mkdir -p download
+          cp dist/make_it_termux download/make_it_termux
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: make_it_termux
+          path: download/make_it_termux
