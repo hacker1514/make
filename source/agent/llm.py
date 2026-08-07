@@ -3,8 +3,12 @@ from __future__ import annotations
 import base64
 import json
 import os
+import re
 import subprocess
 import sys
+import time
+import urllib.error
+import urllib.request
 from typing import Any
 
 from rich.console import Console
@@ -25,21 +29,96 @@ _ensure_kshell()
 from kshell import Client
 
 _client: Client | None = None
+_ollama_url: str | None = None
 
 
 def init_kshell(url: str) -> Client:
-    global _client
+    global _client, _ollama_url
     _client = Client()
     _client.connect(url, username="makeit", password="1234")
     
-    console.print("[dim]Checking Ollama installation...[/dim]")
-    _client.execute("which ollama || curl -fsSL https://ollama.com/install.sh | sh")
+    console.print("[dim]1/4 Installing zstd, Ollama, & Cloudflared...[/dim]")
+    install_cmd = (
+        "export PATH=/usr/local/bin:/usr/bin:/bin:$PATH; "
+        "if ! command -v ollama >/dev/null 2>&1 && [ ! -f /usr/local/bin/ollama ]; then "
+        "  (apt-get update -y && apt-get install -y zstd) || (sudo apt-get update -y && sudo apt-get install -y zstd) || true; "
+        "  curl -fsSL https://ollama.com/install.sh | sh; "
+        "fi; "
+        "if ! command -v cloudflared >/dev/null 2>&1 && [ ! -f /usr/local/bin/cloudflared ]; then "
+        "  curl -fsSL https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o /usr/local/bin/cloudflared && chmod +x /usr/local/bin/cloudflared; "
+        "fi"
+    )
+    _client.execute(install_cmd)
     
-    console.print("[dim]Ensuring Ollama server is running...[/dim]")
-    _client.execute("pgrep -x ollama > /dev/null || (nohup ollama serve > /dev/null 2>&1 &)")
+    console.print("[dim]2/4 Starting Ollama Server & Cloudflare Tunnel...[/dim]")
+    daemon_script = (
+        "import subprocess, time, re, os, urllib.request\n"
+        "os.makedirs('/root/.ollama', exist_ok=True)\n"
+        "os.makedirs(os.path.expanduser('~/.ollama'), exist_ok=True)\n"
+        "env = os.environ.copy()\n"
+        "env['OLLAMA_HOST'] = '0.0.0.0:2345'\n"
+        "env['PATH'] = '/usr/local/bin:/usr/bin:/bin:' + env.get('PATH', '')\n"
+        "ollama_bin = '/usr/local/bin/ollama' if os.path.exists('/usr/local/bin/ollama') else 'ollama'\n"
+        "cf_bin = '/usr/local/bin/cloudflared' if os.path.exists('/usr/local/bin/cloudflared') else 'cloudflared'\n"
+        "subprocess.run('pkill -9 -f \"ollama serve\"', shell=True)\n"
+        "time.sleep(1)\n"
+        "f_ollama = open('/tmp/ollama.log', 'w')\n"
+        "subprocess.Popen([ollama_bin, 'serve'], env=env, stdout=f_ollama, stderr=f_ollama, start_new_session=True)\n"
+        "server_up = False\n"
+        "for _ in range(20):\n"
+        "    try:\n"
+        "        with urllib.request.urlopen('http://127.0.0.1:2345/api/tags', timeout=2) as r:\n"
+        "            if r.status == 200:\n"
+        "                server_up = True\n"
+        "                break\n"
+        "    except Exception:\n"
+        "        pass\n"
+        "    time.sleep(1)\n"
+        "if not server_up:\n"
+        "    f_ollama.flush()\n"
+        "    with open('/tmp/ollama.log', 'r') as f:\n"
+        "        print('OLLAMA_FAILED:' + f.read()[-500:])\n"
+        "else:\n"
+        "    f_cf = open('/tmp/ollama_tunnel.log', 'w')\n"
+        "    subprocess.Popen([cf_bin, 'tunnel', '--url', 'http://127.0.0.1:2345', '--no-autoupdate'], stdout=f_cf, stderr=f_cf, start_new_session=True)\n"
+        "    tunnel_url = ''\n"
+        "    for _ in range(25):\n"
+        "        if os.path.exists('/tmp/ollama_tunnel.log'):\n"
+        "            with open('/tmp/ollama_tunnel.log', 'r') as f:\n"
+        "                content = f.read()\n"
+        "                match = re.search(r'https://[-a-z0-9]+\\.trycloudflare\\.com', content)\n"
+        "                if match:\n"
+        "                    tunnel_url = match.group(0)\n"
+        "                    break\n"
+        "        time.sleep(1)\n"
+        "    print('TUNNEL_URL:' + tunnel_url)\n"
+    )
+    b64_daemon = base64.b64encode(daemon_script.encode("utf-8")).decode("utf-8")
+    b64_daemon_clean = "".join(b64_daemon.splitlines())
+    remote_daemon_cmd = f"python3 -c \"import base64; exec(base64.b64decode('{b64_daemon_clean}').decode('utf-8'))\""
     
-    console.print(f"[dim]Checking model {config.DEFAULT_MODEL}...[/dim]")
-    _client.execute(f"ollama list | grep -q '{config.DEFAULT_MODEL}' || ollama pull {config.DEFAULT_MODEL}")
+    stdout, stderr, code = _client.execute(remote_daemon_cmd)
+    out_text = stdout.strip()
+    
+    if out_text.startswith("OLLAMA_FAILED:"):
+        raise RuntimeError(f"Remote Ollama Serve Failure: {out_text[14:]}")
+    
+    match = re.search(r"https://[-a-z0-9]+\.trycloudflare\.com", out_text)
+    if match:
+        _ollama_url = match.group(0)
+        console.print(f"[dim]Ollama Cloudflare Tunnel Active: {_ollama_url}[/dim]")
+    else:
+        _ollama_url = f"http://127.0.0.1:2345"
+        console.print(f"[yellow]Fallback Tunnel URL: {_ollama_url}[/yellow]")
+    
+    console.print(f"[dim]3/4 Pulling model {config.DEFAULT_MODEL} (please wait)...[/dim]")
+    pull_model_cmd = (
+        "export PATH=/usr/local/bin:/usr/bin:/bin:$PATH; "
+        "export OLLAMA_HOST=0.0.0.0:2345; "
+        "OLLAMA_BIN=$(which ollama 2>/dev/null || find /usr -name ollama 2>/dev/null | head -n 1 || echo /usr/local/bin/ollama); "
+        "$OLLAMA_BIN list | grep -q '" + config.DEFAULT_MODEL + "' || $OLLAMA_BIN pull " + config.DEFAULT_MODEL
+    )
+    _client.execute(pull_model_cmd)
     
     return _client
 
@@ -88,7 +167,10 @@ def chat_completion(
     messages: list[dict],
     tools: list[dict] | None = None,
 ) -> dict:
-    client = get_client()
+    global _ollama_url
+    if not _ollama_url:
+        get_client()
+
     clean_msgs = _sanitize_messages(messages)
 
     payload: dict[str, Any] = {
@@ -103,35 +185,32 @@ def chat_completion(
     if tools:
         payload["tools"] = tools
 
-    raw_json = json.dumps(payload)
-    b64_payload = base64.b64encode(raw_json.encode("utf-8")).decode("utf-8")
+    req_data = json.dumps(payload).encode("utf-8")
+    endpoint = f"{_ollama_url}/api/chat"
 
-    py_script = (
-        "import base64, urllib.request, urllib.error\n"
-        f"payload = base64.b64decode('{b64_payload}')\n"
-        "req = urllib.request.Request('http://127.0.0.1:11434/api/chat', data=payload, headers={'Content-Type': 'application/json'})\n"
-        "try:\n"
-        "    with urllib.request.urlopen(req, timeout=600) as r:\n"
-        "        print(r.read().decode('utf-8'))\n"
-        "except urllib.error.HTTPError as e:\n"
-        "    print('HTTP_ERR:' + str(e.code) + ':' + e.read().decode('utf-8'))\n"
-    )
-    
-    b64_script = base64.b64encode(py_script.encode("utf-8")).decode("utf-8")
-    b64_script_clean = "".join(b64_script.splitlines())
+    max_retries = 5
+    resp_data = None
+    for attempt in range(max_retries):
+        req = urllib.request.Request(endpoint, data=req_data, headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                resp_data = json.loads(resp.read().decode("utf-8"))
+                break
+        except urllib.error.HTTPError as e:
+            if e.code in (502, 503, 504) and attempt < max_retries - 1:
+                time.sleep(2)
+                continue
+            err_body = e.read().decode("utf-8", errors="replace")
+            raise RuntimeError(f"Ollama API Error ({e.code}): {err_body}")
+        except Exception as e:
+            if attempt < max_retries - 1:
+                time.sleep(2)
+                continue
+            raise RuntimeError(f"Failed to reach Ollama endpoint ({endpoint}): {e}")
 
-    remote_cmd = f"python3 -c \"import base64; exec(base64.b64decode('{b64_script_clean}').decode('utf-8'))\""
+    if not resp_data:
+        raise RuntimeError(f"Empty response from Ollama endpoint ({endpoint})")
 
-    stdout, stderr, exit_code = client.execute(remote_cmd)
-    out_text = stdout.strip()
-
-    if out_text.startswith("HTTP_ERR:"):
-        raise RuntimeError(f"Ollama API Error: {out_text}")
-
-    if exit_code != 0 or not out_text:
-        raise RuntimeError(f"Remote LLM execution failed: {stderr or stdout}")
-
-    resp_data = json.loads(out_text)
     msg = resp_data.get("message", {})
 
     result: dict[str, Any] = {
